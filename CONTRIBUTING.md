@@ -4,13 +4,13 @@
 
 # Contributing
 
-If you have any question or problem with _tapir-golden-munit_ feel free to open an [issue](https://github.com/alejandrohdezma/tapir-golden-openapi-munit/issues) (or a [pull request](https://github.com/alejandrohdezma/tapir-golden-openapi-munit/pulls) if you already have the solution :smile:).
+If you have any question or problem with _tapir-golden-openapi-munit_ feel free to open an [issue](https://github.com/alejandrohdezma/tapir-golden-openapi-munit/issues) (or a [pull request](https://github.com/alejandrohdezma/tapir-golden-openapi-munit/pulls) if you already have the solution :smile:).
 
 People are expected to follow the [Code of Conduct](CODE_OF_CONDUCT.md) when discussing on the Github issues or PRs.
 
 ## How can I help?
 
-_tapir-golden-munit_ follows a standard [fork and pull](https://help.github.com/articles/using-pull-requests/) model for contributions via GitHub pull requests.
+_tapir-golden-openapi-munit_ follows a standard [fork and pull](https://help.github.com/articles/using-pull-requests/) model for contributions via GitHub pull requests.
 
 The process is simple:
 
