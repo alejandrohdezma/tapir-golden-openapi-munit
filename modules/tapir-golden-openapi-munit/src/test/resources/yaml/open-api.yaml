@@ -1,0 +1,35 @@
+# This is a header
+
+openapi: 3.0.3
+info:
+  title: title
+  version: version
+  description: description
+paths:
+  /v1/users/{user_id}:
+    get:
+      operationId: getV1UsersUser_id
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+        default:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string

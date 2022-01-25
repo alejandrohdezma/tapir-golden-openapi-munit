@@ -1,0 +1,115 @@
+# Don't edit this file!
+# It is automatically updated after every release of https://github.com/alejandrohdezma/sbt-ci
+# If you want to suggest a change, please open a PR or issue in that repository
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, reopened, labeled, unlabeled, synchronize]
+
+jobs:
+  auto-update-outdated-prs-to-latest-main:
+    name: Update outdated PRs to latest `main`
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Get the GitHub App installation token
+        uses: alejandrohdezma/actions/github-app-token@v1
+        id: github_app
+        with:
+          token: ${{ secrets.GH_APP_TOKEN }}
+
+      - name: Update outdated PRs to latest `main`
+        uses: alejandrohdezma/actions/update-outdated-prs@v1
+        with:
+          github-token: ${{ steps.github_app.outputs.token }}
+
+  labeler:
+    if: |
+      github.event_name == 'pull_request' && github.event.pull_request.state == 'OPEN' &&
+        github.actor != 'dependabot[bot]'
+    name: Labeler
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update PR labels
+        uses: alejandrohdezma/actions/labeler@v1
+
+      - name: Check PR labels
+        uses: alejandrohdezma/actions/label-check@v1
+
+  ci-steward:
+    if: |
+      github.event_name == 'pull_request' && github.event.pull_request.state == 'OPEN' && 
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        github.event.pull_request.user.login == 'alejandrohdezma-steward[bot]'
+    name: (Scala Steward) Enable auto-merge, run `sbt fix`...
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the GitHub App installation token
+        uses: alejandrohdezma/actions/github-app-token@v1
+        id: github_app
+        with:
+          token: ${{ secrets.GH_APP_TOKEN }}
+
+      - name: Checkout project
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+        with:
+          token: ${{ steps.github_app.outputs.token }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Enable auto-merge for this PR
+        run: gh pr merge --auto --merge ${{github.event.pull_request.number}}
+        env:
+          GITHUB_TOKEN: ${{ steps.github_app.outputs.token }}
+
+      - name: Run `sbt generateCiFiles`
+        uses: alejandrohdezma/actions/scala@v1
+        with:
+          jvm: openjdk:1.17
+          task: generateCiFiles
+
+      - name: Commit changes by `sbt generateCiFiles`
+        uses: alejandrohdezma/actions/commit-and-push@v1
+        with:
+          message: Run `sbt generateCiFiles` [skip ci]
+
+      - name: Run `sbt fix`
+        uses: alejandrohdezma/actions/scala@v1
+        with:
+          jvm: openjdk:1.17
+          task: fix
+
+      - name: Commit changes by `sbt fix`
+        uses: alejandrohdezma/actions/commit-and-push@v1
+        with:
+          message: Run `sbt fix` [skip ci]
+
+  test:
+    needs: [labeler, ci-steward]
+    if: |
+      always() && !contains(needs.*.result, 'failure') && github.event_name == 'pull_request' &&
+        github.event.pull_request.state == 'OPEN' &&
+        github.actor != 'dependabot[bot]'
+    name: Run "sbt ci-test" on JDK ${{ matrix.jdk }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        jdk:
+          - adopt:1.8
+          - adopt:1.11
+          - openjdk:1.17
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Run `sbt ci-test` on ${{ matrix.jdk }}
+        uses: alejandrohdezma/actions/scala@v1
+        with:
+          jvm: ${{ matrix.jdk }}
+          task: ci-test
