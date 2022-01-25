@@ -18,6 +18,7 @@ package munit
 
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.Paths
 
 import scala.jdk.CollectionConverters._
 
@@ -98,13 +99,13 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
     * Defaults to `resources` folder.
     */
   def tapirGoldenOpenAPIPath: Path =
-    Path
-      .of(getClass.getResource("/").toURI())
+    Paths
+      .get(getClass.getResource("/").toURI())
       .iterator()
       .asScala
       .toList
       .takeWhile(_.toString() != "target") // scalafix:ok
-      .fold(Path.of("/"))(_ resolve _)
+      .fold(Paths.get("/"))(_ resolve _)
       .resolve("src")
       .resolve("test")
       .resolve("resources")
@@ -121,7 +122,7 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
   if (Files.notExists(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName)))
     test(s"Generating $tapirGoldenOpenAPIFileName") {
       Files.createDirectories(tapirGoldenOpenAPIPath)
-      Files.writeString(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName), yaml)
+      Files.write(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName), yaml.getBytes())
 
       assert(
         !sys.env.contains("CI"),
@@ -130,7 +131,8 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
     }
   else
     test(s"$tapirGoldenOpenAPIFileName is correct") {
-      val content = Files.readString(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName))
+      val content =
+        Files.readAllLines(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName)).asScala.mkString("\n")
 
       assertNoDiff(yaml, content)
     }

@@ -45,7 +45,8 @@ trait TapirGoldenOpenAPIValidatorSuite { self: TapirGoldenOpenAPISuite =>
 
   if (Files.exists(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName))) {
     test(s"$tapirGoldenOpenAPIFileName validates") {
-      val content = Files.readString(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName))
+      val content =
+        Files.readAllLines(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName)).asScala.mkString("\n")
 
       val result = new OpenAPIV3Parser().readContents(content)
 
