@@ -74,7 +74,7 @@ jobs:
       - name: Commit changes by `sbt generateCiFiles`
         uses: alejandrohdezma/actions/commit-and-push@v1
         with:
-          message: Run `sbt generateCiFiles` [skip ci]
+          message: Run `sbt generateCiFiles`
 
       - name: Run `sbt fix`
         uses: alejandrohdezma/actions/scala@v1
@@ -85,7 +85,7 @@ jobs:
       - name: Commit changes by `sbt fix`
         uses: alejandrohdezma/actions/commit-and-push@v1
         with:
-          message: Run `sbt fix` [skip ci]
+          message: Run `sbt fix`
 
   test:
     needs: [labeler, ci-steward]
@@ -99,7 +99,6 @@ jobs:
       fail-fast: false
       matrix:
         jdk:
-          - adopt:1.8
           - adopt:1.11
           - openjdk:1.17
     steps:

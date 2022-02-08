@@ -26,7 +26,7 @@ jobs:
       - name: Run `sbt ci-publish`
         uses: alejandrohdezma/actions/scala@v1
         with:
-          jvm: adopt:1.8
+          jvm: adopt:1.11
           task: ci-publish
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
