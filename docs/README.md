@@ -7,7 +7,7 @@ Extension library for [Tapir](https://github.com/softwaremill/tapir) and [MUnit]
 Add the following line to your `build.sbt` file:
 
 ```sbt
-libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit" % "@VERSION@" % Test)
+libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit" % "@VERSION@" % Test
 ```
 
 ## Usage
