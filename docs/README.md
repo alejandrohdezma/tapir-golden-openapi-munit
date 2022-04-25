@@ -170,7 +170,7 @@ If you also want to validate the generated OpenAPI you can do the following:
 
 1. Add `tapir-golden-openapi-munit-validator` to your `build.sbt`:
 ```sbt
-libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit-validator" % "@VERSION@" % Test)
+libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit-validator" % "@VERSION@" % Test
 ```
 2. Extend your suite with `TapirGoldenOpenAPIValidatorSuite`:
 ```scala mdoc:silent
