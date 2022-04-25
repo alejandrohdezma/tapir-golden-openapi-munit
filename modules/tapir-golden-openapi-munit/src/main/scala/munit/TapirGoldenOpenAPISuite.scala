@@ -23,6 +23,7 @@ import java.nio.file.Paths
 import scala.jdk.CollectionConverters._
 
 import sttp.tapir._
+import sttp.tapir.apispec.Tag
 import sttp.tapir.docs.openapi.OpenAPIDocsInterpreter
 import sttp.tapir.docs.openapi.OpenAPIDocsOptions
 import sttp.tapir.openapi.Info
@@ -54,6 +55,8 @@ import sttp.tapir.openapi.circe.yaml._
   *   Alejandro Hernández
   * @author
   *   Jose Gutierrez de Ory
+  * @author
+  *   Adrian Ramirez
   */
 abstract class TapirGoldenOpenAPISuite extends FunSuite {
 
@@ -94,6 +97,9 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
     */
   def tapirGoldenOpenAPIFileName: String = "openapi.yaml"
 
+  /** Method that can be used to modify the `OpenAPI` object before transforming it to YAML */
+  def tapirGoldenOpenAPIModifier(openApi: OpenAPI): OpenAPI = openApi
+
   /** Folder where the OpenAPI file will be generated.
     *
     * Defaults to `resources` folder.
@@ -111,11 +117,13 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
       .resolve("resources")
 
   private def yaml: String = {
-    val openAPI = OpenAPIDocsInterpreter(tapirGoldenOpenAPIOptions).toOpenAPI(endpoints, tapirGoldenOpenAPIInfo).toYaml
+    val openAPI = OpenAPIDocsInterpreter(tapirGoldenOpenAPIOptions).toOpenAPI(endpoints, tapirGoldenOpenAPIInfo)
+
+    val yamlString = tapirGoldenOpenAPIModifier(openAPI).toYaml
 
     tapirGoldenOpenAPIHeader match {
-      case ""     => openAPI
-      case header => s"$header\n\n$openAPI"
+      case ""     => yamlString
+      case header => s"$header\n\n$yamlString"
     }
   }
 
