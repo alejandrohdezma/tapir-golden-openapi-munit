@@ -20,6 +20,15 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
+import scala.jdk.CollectionConverters._
+
+import sttp.tapir._
+import sttp.tapir.apispec.Tag
+import sttp.tapir.docs.openapi.OpenAPIDocsInterpreter
+import sttp.tapir.docs.openapi.OpenAPIDocsOptions
+import sttp.tapir.openapi.Info
+import sttp.tapir.openapi.circe.yaml._
+
 /** Base class for golden testing the generation of OpenAPI documentation for Tapir endpoints.
   *
   * To use this class you just need to override the `val endpoints: List[AnyEndpoint]` definition with your list of
