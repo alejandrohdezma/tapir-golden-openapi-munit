@@ -97,12 +97,8 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
     */
   def tapirGoldenOpenAPIFileName: String = "openapi.yaml"
 
-  /**
-   * List of tags for the global tags section
-   *
-   * Defaults to an empty list
-   */
-  def tapirGoldenOpenAPITags: List[Tag] = Nil
+  /** Method that can be used to modify the `OpenAPI` object before transforming it to YAML */
+  def tapirGoldenOpenAPIModifier(openApi: OpenAPI): OpenAPI = openApi
 
   /** Folder where the OpenAPI file will be generated.
     *
@@ -121,11 +117,13 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
       .resolve("resources")
 
   private def yaml: String = {
-    val openAPI = OpenAPIDocsInterpreter(tapirGoldenOpenAPIOptions).toOpenAPI(endpoints, tapirGoldenOpenAPIInfo).copy(tags = tapirGoldenOpenAPITags).toYaml
+    val openAPI = OpenAPIDocsInterpreter(tapirGoldenOpenAPIOptions).toOpenAPI(endpoints, tapirGoldenOpenAPIInfo)
+
+    val yamlString = tapirGoldenOpenAPIModifier(openAPI).toYaml
 
     tapirGoldenOpenAPIHeader match {
-      case ""     => openAPI
-      case header => s"$header\n\n$openAPI"
+      case ""     => yamlString
+      case header => s"$header\n\n$yamlString"
     }
   }
 
