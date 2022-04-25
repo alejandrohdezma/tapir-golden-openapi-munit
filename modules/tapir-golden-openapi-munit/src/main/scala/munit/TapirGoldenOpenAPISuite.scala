@@ -20,14 +20,6 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
-import scala.jdk.CollectionConverters._
-
-import sttp.tapir._
-import sttp.tapir.docs.openapi.OpenAPIDocsInterpreter
-import sttp.tapir.docs.openapi.OpenAPIDocsOptions
-import sttp.tapir.openapi.Info
-import sttp.tapir.openapi.circe.yaml._
-
 /** Base class for golden testing the generation of OpenAPI documentation for Tapir endpoints.
   *
   * To use this class you just need to override the `val endpoints: List[AnyEndpoint]` definition with your list of
@@ -54,6 +46,8 @@ import sttp.tapir.openapi.circe.yaml._
   *   Alejandro Hernández
   * @author
   *   Jose Gutierrez de Ory
+  * @author
+  *   Adrian Ramirez
   */
 abstract class TapirGoldenOpenAPISuite extends FunSuite {
 
@@ -94,6 +88,13 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
     */
   def tapirGoldenOpenAPIFileName: String = "openapi.yaml"
 
+  /**
+   * List of tags for the global tags section
+   *
+   * Defaults to an empty list
+   */
+  def tapirGoldenOpenAPITags: List[Tag] = Nil
+
   /** Folder where the OpenAPI file will be generated.
     *
     * Defaults to `resources` folder.
@@ -111,7 +112,7 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
       .resolve("resources")
 
   private def yaml: String = {
-    val openAPI = OpenAPIDocsInterpreter(tapirGoldenOpenAPIOptions).toOpenAPI(endpoints, tapirGoldenOpenAPIInfo).toYaml
+    val openAPI = OpenAPIDocsInterpreter(tapirGoldenOpenAPIOptions).toOpenAPI(endpoints, tapirGoldenOpenAPIInfo).copy(tags = tapirGoldenOpenAPITags).toYaml
 
     tapirGoldenOpenAPIHeader match {
       case ""     => openAPI
