@@ -18,9 +18,9 @@ package munit
 
 import java.nio.file.Path
 
+import sttp.apispec.openapi.Info
 import sttp.tapir._
 import sttp.tapir.docs.openapi.OpenAPIDocsOptions
-import sttp.tapir.openapi.Info
 
 class TapirGoldenOpenAPISuiteSuite extends TapirGoldenOpenAPISuite {
 

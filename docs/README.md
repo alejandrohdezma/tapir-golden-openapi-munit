@@ -98,9 +98,9 @@ There are available some methods that can be overriden to alter the generated fi
 ```scala mdoc:silent
 import java.nio.file.Path
 
+import sttp.apispec.openapi.Info
 import sttp.tapir._
 import sttp.tapir.docs.openapi.OpenAPIDocsOptions
-import sttp.tapir.openapi.Info
 
 class AllModificationsSuite extends munit.TapirGoldenOpenAPISuite {
 
