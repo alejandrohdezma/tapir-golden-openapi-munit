@@ -1,4 +1,4 @@
-# Golden testing for Tapir endpoints using MUnit
+# documentation
 
 Extension library for [Tapir](https://github.com/softwaremill/tapir) and [MUnit](https://scalameta.org/munit/) that allows golden-testing Tapir endpoints' OpenAPI documentation.
 
@@ -98,9 +98,9 @@ There are available some methods that can be overriden to alter the generated fi
 ```scala
 import java.nio.file.Path
 
+import sttp.apispec.openapi.Info
 import sttp.tapir._
 import sttp.tapir.docs.openapi.OpenAPIDocsOptions
-import sttp.tapir.openapi.Info
 
 class AllModificationsSuite extends munit.TapirGoldenOpenAPISuite {
 
@@ -185,6 +185,4 @@ class ValidatedEndpointsSuite
 
 ## Contributors for this project
 
-| <a href="https://github.com/alejandrohdezma"><img alt="alejandrohdezma" src="https://avatars.githubusercontent.com/u/9027541?v=4&s=120" width="120px" /></a> | <a href="https://github.com/AdrianRaFo"><img alt="AdrianRaFo" src="https://avatars.githubusercontent.com/u/15971742?v=4&s=120" width="120px" /></a> | <a href="https://github.com/gutiory"><img alt="gutiory" src="https://avatars.githubusercontent.com/u/3316502?v=4&s=120" width="120px" /></a> |
-| :--: | :--: | :--: |
-| <a href="https://github.com/alejandrohdezma"><sub><b>alejandrohdezma</b></sub></a> | <a href="https://github.com/AdrianRaFo"><sub><b>AdrianRaFo</b></sub></a> | <a href="https://github.com/gutiory"><sub><b>gutiory</b></sub></a> |
+No contributors found

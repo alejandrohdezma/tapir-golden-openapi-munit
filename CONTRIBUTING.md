@@ -4,7 +4,7 @@
 
 # Contributing
 
-If you have any question or problem with _tapir-golden-openapi-munit_ feel free to open an [issue](https://github.com/alejandrohdezma/tapir-golden-openapi-munit/issues) (or a [pull request](https://github.com/alejandrohdezma/tapir-golden-openapi-munit/pulls) if you already have the solution :smile:).
+If you have any question or problem with _tapir-golden-openapi-munit_ feel free to open an [issue](https://github.com//issues) (or a [pull request](https://github.com//pulls) if you already have the solution :smile:).
 
 People are expected to follow the [Code of Conduct](CODE_OF_CONDUCT.md) when discussing on the Github issues or PRs.
 

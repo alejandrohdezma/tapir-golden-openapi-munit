@@ -22,12 +22,12 @@ import java.nio.file.Paths
 
 import scala.jdk.CollectionConverters._
 
+import sttp.apispec.openapi.Info
+import sttp.apispec.openapi.OpenAPI
+import sttp.apispec.openapi.circe.yaml._
 import sttp.tapir._
 import sttp.tapir.docs.openapi.OpenAPIDocsInterpreter
 import sttp.tapir.docs.openapi.OpenAPIDocsOptions
-import sttp.tapir.openapi.Info
-import sttp.tapir.openapi.OpenAPI
-import sttp.tapir.openapi.circe.yaml._
 
 /** Base class for golden testing the generation of OpenAPI documentation for Tapir endpoints.
   *
