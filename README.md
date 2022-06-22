@@ -1,4 +1,4 @@
-# documentation
+# Golden testing for Tapir endpoints using MUnit
 
 Extension library for [Tapir](https://github.com/softwaremill/tapir) and [MUnit](https://scalameta.org/munit/) that allows golden-testing Tapir endpoints' OpenAPI documentation.
 
@@ -7,7 +7,7 @@ Extension library for [Tapir](https://github.com/softwaremill/tapir) and [MUnit]
 Add the following line to your `build.sbt` file:
 
 ```sbt
-libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit" % "0.3.0" % Test
+libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit" % "0.4.0" % Test
 ```
 
 ## Usage
@@ -170,7 +170,7 @@ If you also want to validate the generated OpenAPI you can do the following:
 
 1. Add `tapir-golden-openapi-munit-validator` to your `build.sbt`:
 ```sbt
-libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit-validator" % "0.3.0" % Test
+libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit-validator" % "0.4.0" % Test
 ```
 2. Extend your suite with `TapirGoldenOpenAPIValidatorSuite`:
 ```scala
@@ -185,4 +185,6 @@ class ValidatedEndpointsSuite
 
 ## Contributors for this project
 
-No contributors found
+| <a href="https://github.com/alejandrohdezma"><img alt="alejandrohdezma" src="https://avatars.githubusercontent.com/u/9027541?v=4&s=120" width="120px" /></a> | <a href="https://github.com/AdrianRaFo"><img alt="AdrianRaFo" src="https://avatars.githubusercontent.com/u/15971742?v=4&s=120" width="120px" /></a> | <a href="https://github.com/gutiory"><img alt="gutiory" src="https://avatars.githubusercontent.com/u/3316502?v=4&s=120" width="120px" /></a> |
+| :--: | :--: | :--: |
+| <a href="https://github.com/alejandrohdezma"><sub><b>alejandrohdezma</b></sub></a> | <a href="https://github.com/AdrianRaFo"><sub><b>AdrianRaFo</b></sub></a> | <a href="https://github.com/gutiory"><sub><b>gutiory</b></sub></a> |
