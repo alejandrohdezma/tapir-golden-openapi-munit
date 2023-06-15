@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "2.13.10"
+ThisBuild / scalaVersion := "2.13.11"
 ThisBuild / organization := "com.alejandrohdezma"
 
 addCommandAlias("ci-test", "fix --check; mdoc; test; publishLocal;")
@@ -12,8 +12,8 @@ lazy val documentation = project
   .dependsOn(`tapir-golden-openapi-munit-validator`)
 
 lazy val `tapir-golden-openapi-munit` = module
-  .settings(libraryDependencies += "com.softwaremill.sttp.tapir" %% "tapir-core" % "1.5.0")
-  .settings(libraryDependencies += "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % "1.5.0")
+  .settings(libraryDependencies += "com.softwaremill.sttp.tapir" %% "tapir-core" % "1.5.4")
+  .settings(libraryDependencies += "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % "1.5.4")
   .settings(libraryDependencies += "com.softwaremill.sttp.apispec" %% "openapi-circe-yaml" % "0.4.0")
   .settings(libraryDependencies += "org.scalameta" %% "munit" % "0.7.29")
 
