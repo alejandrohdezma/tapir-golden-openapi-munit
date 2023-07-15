@@ -12,11 +12,11 @@ lazy val documentation = project
   .dependsOn(`tapir-golden-openapi-munit-validator`)
 
 lazy val `tapir-golden-openapi-munit` = module
-  .settings(libraryDependencies += "com.softwaremill.sttp.tapir" %% "tapir-core" % "1.6.0")
-  .settings(libraryDependencies += "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % "1.6.0")
-  .settings(libraryDependencies += "com.softwaremill.sttp.apispec" %% "openapi-circe-yaml" % "0.5.2")
+  .settings(libraryDependencies += "com.softwaremill.sttp.tapir" %% "tapir-core" % "1.5.5")
+  .settings(libraryDependencies += "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % "1.5.5")
+  .settings(libraryDependencies += "com.softwaremill.sttp.apispec" %% "openapi-circe-yaml" % "0.4.0")
   .settings(libraryDependencies += "org.scalameta" %% "munit" % "0.7.29")
 
 lazy val `tapir-golden-openapi-munit-validator` = module
   .dependsOn(`tapir-golden-openapi-munit`)
-  .settings(libraryDependencies += "io.swagger.parser.v3" % "swagger-parser" % "2.1.16")
+  .settings(libraryDependencies += "io.swagger.parser.v3" % "swagger-parser" % "2.1.15")
