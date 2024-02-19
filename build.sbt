@@ -1,13 +1,13 @@
-ThisBuild / scalaVersion := "2.13.12"
-ThisBuild / organization := "com.alejandrohdezma"
+ThisBuild / scalaVersion           := "2.13.12"
+ThisBuild / organization           := "com.alejandrohdezma"
+ThisBuild / versionPolicyIntention := Compatibility.BinaryAndSourceCompatible
 
-addCommandAlias("ci-test", "fix --check; mdoc; test; publishLocal;")
+addCommandAlias("ci-test", "fix --check; versionPolicyCheck; mdoc; test; publishLocal;")
 addCommandAlias("ci-docs", "github; headerCreateAll; mdoc")
-addCommandAlias("ci-publish", "github; ci-release")
+addCommandAlias("ci-publish", "versionCheck; github; ci-release")
 
 lazy val documentation = project
   .enablePlugins(MdocPlugin)
-  .settings(mdocOut := file("."))
   .dependsOn(`tapir-golden-openapi-munit`)
   .dependsOn(`tapir-golden-openapi-munit-validator`)
 
