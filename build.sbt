@@ -14,7 +14,7 @@ lazy val documentation = project
 lazy val `tapir-golden-openapi-munit` = module
   .settings(libraryDependencies += "com.softwaremill.sttp.tapir" %% "tapir-core" % "1.10.13")
   .settings(libraryDependencies += "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % "1.10.13")
-  .settings(libraryDependencies += "com.softwaremill.sttp.apispec" %% "openapi-circe-yaml" % "0.10.0")
+  .settings(libraryDependencies += "com.softwaremill.sttp.apispec" %% "openapi-circe-yaml" % "0.11.2")
   .settings(libraryDependencies += "org.scalameta" %% "munit" % "1.0.0")
 
 lazy val `tapir-golden-openapi-munit-validator` = module
