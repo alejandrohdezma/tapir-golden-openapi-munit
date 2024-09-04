@@ -7,7 +7,7 @@ Extension library for [Tapir](https://github.com/softwaremill/tapir) and [MUnit]
 Add the following line to your `build.sbt` file:
 
 ```sbt
-libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit" % "1.0.0" % Test
+libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit" % "2.0.0" % Test
 ```
 
 ## Usage
@@ -170,7 +170,7 @@ If you also want to validate the generated OpenAPI you can do the following:
 
 1. Add `tapir-golden-openapi-munit-validator` to your `build.sbt`:
 ```sbt
-libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit-validator" % "1.0.0" % Test
+libraryDependencies += "com.alejandrohdezma" %% "tapir-golden-openapi-munit-validator" % "2.0.0" % Test
 ```
 2. Extend your suite with `TapirGoldenOpenAPIValidatorSuite`:
 ```scala
