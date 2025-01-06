@@ -1,7 +1,7 @@
 ThisBuild / scalaVersion           := "2.13.15"
 ThisBuild / organization           := "com.alejandrohdezma"
 ThisBuild / crossScalaVersions     := Seq("2.13.15", "3.3.4")
-ThisBuild / versionPolicyIntention := Compatibility.BinaryAndSourceCompatible
+ThisBuild / versionPolicyIntention := Compatibility.BinaryCompatible
 
 addCommandAlias("ci-test", "fix --check; versionPolicyCheck; mdoc; +test; +publishLocal;")
 addCommandAlias("ci-docs", "github; headerCreateAll; mdoc")
