@@ -1,6 +1,6 @@
 ThisBuild / scalaVersion           := "2.13.16"
 ThisBuild / organization           := "com.alejandrohdezma"
-ThisBuild / crossScalaVersions     := Seq("2.13.16", "3.3.4")
+ThisBuild / crossScalaVersions     := Seq("2.13.16", "3.3.5")
 ThisBuild / versionPolicyIntention := Compatibility.BinaryCompatible
 
 addCommandAlias("ci-test", "fix --check; versionPolicyCheck; mdoc; +test; +publishLocal;")
