@@ -116,6 +116,12 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
       .resolve("test")
       .resolve("resources")
 
+  /** You can set this to `true` if you want to always override the file, even if it already exists.
+    *
+    * This is useful if you want to update some schemas as see their changes immediately using hot-reload.
+    */
+  def alwaysOverrideFile: Boolean = false
+
   private def yaml: String = {
     val openAPI = OpenAPIDocsInterpreter(tapirGoldenOpenAPIOptions).toOpenAPI(endpoints, tapirGoldenOpenAPIInfo)
 
@@ -127,7 +133,7 @@ abstract class TapirGoldenOpenAPISuite extends FunSuite {
     }
   }
 
-  if (Files.notExists(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName)))
+  if (Files.notExists(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName)) || alwaysOverrideFile)
     test(s"Generating $tapirGoldenOpenAPIFileName") {
       Files.createDirectories(tapirGoldenOpenAPIPath)
       Files.write(tapirGoldenOpenAPIPath.resolve(tapirGoldenOpenAPIFileName), yaml.getBytes())
