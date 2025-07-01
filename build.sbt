@@ -20,4 +20,4 @@ lazy val `tapir-golden-openapi-munit` = module
 
 lazy val `tapir-golden-openapi-munit-validator` = module
   .dependsOn(`tapir-golden-openapi-munit`)
-  .settings(libraryDependencies += "io.swagger.parser.v3" % "swagger-parser" % "2.1.29")
+  .settings(libraryDependencies += "io.swagger.parser.v3" % "swagger-parser" % "2.1.30")
